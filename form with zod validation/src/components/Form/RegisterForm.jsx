@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema } from './formSchema';
+import { formSchema } from './Schema/formSchema';
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
