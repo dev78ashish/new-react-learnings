@@ -1,6 +1,0 @@
-Today's Task | 28 April
-
-Explored Zod functions to enhance form validation, such as allowing values like 0.020002.
-Working on a form that integrates more components from ShadCN, including a date picker for users to select specific dates.
-Creating a form using all available components from ShadCN and populating the form with data received from the backend server.
-Exploring Solana and the web3.js library and learning how to integrate them with React.js.
