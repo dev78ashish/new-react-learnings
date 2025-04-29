@@ -33,7 +33,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 const RegisterForm = () => {
-    const [selectedCode, setSelectedCode] = useState("+1"); 
+    const [selectedCode, setSelectedCode] = useState("+1");
 
     const form = useForm({
         defaultValues: {
@@ -107,7 +107,9 @@ const RegisterForm = () => {
                                             <FormControl>
                                                 <Input placeholder="Enter your full name" {...field} className="focus-visible:ring-blue-500" />
                                             </FormControl>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -136,7 +138,9 @@ const RegisterForm = () => {
                                             {/* <FormDescription>
                                                 Age must be between 18 and 60
                                             </FormDescription> */}
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -167,7 +171,9 @@ const RegisterForm = () => {
                                                     </div>
                                                 </RadioGroup>
                                             </FormControl>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -191,7 +197,9 @@ const RegisterForm = () => {
                                             <FormControl>
                                                 <Input type="email" placeholder="your.email@example.com" {...field} className="focus-visible:ring-blue-500" />
                                             </FormControl>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -225,7 +233,9 @@ const RegisterForm = () => {
                                                 />
                                             </FormControl>
                                         </div>
-                                        <FormMessage />
+                                        <div className='min-h-[20px]'>
+                                            <FormMessage />
+                                        </div>
                                     </FormItem>
                                 )}
                                 />
@@ -249,7 +259,9 @@ const RegisterForm = () => {
                                             <FormControl>
                                                 <Input placeholder="Enter percentage (0-100)" type="number" min="0" max="100" step="0.01" {...field} className="focus-visible:ring-blue-500" />
                                             </FormControl>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -291,7 +303,9 @@ const RegisterForm = () => {
                                                     />
                                                 </PopoverContent>
                                             </Popover>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -315,7 +329,9 @@ const RegisterForm = () => {
                                             <FormControl>
                                                 <Textarea placeholder="Enter your complete address" {...field} className="focus-visible:ring-blue-500" />
                                             </FormControl>
-                                            <FormMessage />
+                                            <div className='min-h-[20px]'>
+                                                <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -330,7 +346,9 @@ const RegisterForm = () => {
                                                 <FormControl>
                                                     <Input placeholder="Enter city" {...field} className="focus-visible:ring-blue-500" />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <div className='min-h-[20px]'>
+                                                    <FormMessage />
+                                                </div>
                                             </FormItem>
                                         )}
                                     />
@@ -344,7 +362,9 @@ const RegisterForm = () => {
                                                 <FormControl>
                                                     <Input placeholder="Enter postal code" {...field} className="focus-visible:ring-blue-500" />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <div className='min-h-[20px]'>
+                                                    <FormMessage />
+                                                </div>
                                             </FormItem>
                                         )}
                                     />
@@ -367,7 +387,9 @@ const RegisterForm = () => {
                                                         <SelectItem value="australia">Australia</SelectItem>
                                                     </SelectContent>
                                                 </Select>
-                                                <FormMessage />
+                                                <div className='min-h-[20px]'>
+                                                    <FormMessage />
+                                                </div>
                                             </FormItem>
                                         )}
                                     />
@@ -396,7 +418,9 @@ const RegisterForm = () => {
                                                 You agree to our Terms of Service and Privacy Policy.
                                             </FormDescription>
                                         </div>
-                                        <FormMessage />
+                                        <div className='min-h-[20px]'>
+                                            <FormMessage />
+                                        </div>
                                     </FormItem>
                                 )}
                             />
