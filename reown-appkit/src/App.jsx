@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import StorageComponent from './components/StorageComponent'
 
 const App = () => {
   const { address, isConnected } = useAccount()
@@ -14,7 +15,6 @@ const App = () => {
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
       .then(() => {
-        // You could add a toast notification here
         console.log('Copied to clipboard')
       })
   }
@@ -76,6 +76,7 @@ const App = () => {
           </Card>
         )}
       </main>
+      <StorageComponent />
     </div>
   )
 }

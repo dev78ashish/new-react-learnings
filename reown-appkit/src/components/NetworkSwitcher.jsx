@@ -2,9 +2,10 @@ import React from 'react'
 import { useSwitchChain, useAccount } from 'wagmi'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Loader2 } from 'lucide-react'
 
 const NetworkSwitcher = () => {
-  const { chains, switchChain } = useSwitchChain()
+  const { chains, switchChain, isPending } = useSwitchChain()
   const { isConnected, chain } = useAccount()
 
   if (!isConnected) {
@@ -17,6 +18,10 @@ const NetworkSwitcher = () => {
     )
   }
 
+  const handleSwitch = async (chainId) => {
+    await switchChain({ chainId })
+  }
+
   return (
     <Card className="w-full">
       <CardHeader className="pb-2">
@@ -24,21 +29,33 @@ const NetworkSwitcher = () => {
         <p className="text-sm text-gray-500">Choose a blockchain network to connect to</p>
       </CardHeader>
       <CardContent>
-        {chain && (
-          <h2 className='mb-2'>You are currently connected to <span className='bg-gray-50 text-green-700'>${chain.name}</span></h2>
-        )}
         <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-          {chains.map((chain) => (
-            <Button 
-              key={chain.id} 
-              onClick={() => switchChain({ chainId: chain.id })}
-              variant="outline"
+          {chains.map((c) => (
+            <Button
+              key={c.id}
+              onClick={() => handleSwitch(c.id)}
+              variant={c.id === chain?.id ? "default" : "outline"}
               size="sm"
-              className="flex items-center gap-1 cursor-pointer"
+              disabled={isPending}
+              className="flex items-center gap-1"
             >
-              {chain.name}
+              {c.name}
             </Button>
           ))}
+        </div>
+
+        <div className="mt-2 flex items-center gap-2">
+          {isPending ? (
+            <>
+              <Loader2 className="animate-spin w-4 h-4" />
+              <span>Please wait...</span>
+            </>
+          ) : (
+            <span>
+              You are currently connected to{' '}
+              <span className="bg-gray-50 text-green-700 px-2 py-1 rounded">{chain?.name}</span>
+            </span>
+          )}
         </div>
       </CardContent>
     </Card>
