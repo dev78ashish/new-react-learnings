@@ -1,0 +1,6 @@
+Today's Task | 24th April
+
+Implemented PUT, PATCH, and DELETE requests using RTK Query in React.js.
+Started learning about Blockchain and Solana, and explored how a frontend interacts with Solana.
+Created a component in React.js to upload files using drag and drop, also enabling users to choose files from the system.
+Built a simple React.js app to connect with Phantom wallet and fetch the user's wallet address.
