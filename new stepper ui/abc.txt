@@ -1,7 +1,0 @@
-Today's Task | 16th April
-
-Started learning about Shadcn/UI.
-Learned to use components of Shadcn/UI.
-Learned to use form component of Shadcn/UI.
-Implemented a simple guess the number game using Shadcn/UI.
-Created a UI with MultiForm Stepper with 4 steps for users to fill their details in each of 4 forms.
