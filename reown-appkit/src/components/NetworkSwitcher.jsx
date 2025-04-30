@@ -1,103 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import { useAppKit } from '@reown/appkit/react'
+import React from 'react'
+import { useSwitchChain, useAccount } from 'wagmi'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
-export default function NetworkSwitcher() {
-  const appKit = useAppKit()
-  const [currentChain, setCurrentChain] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [pendingChainId, setPendingChainId] = useState(null)
-  const [error, setError] = useState(null)
+const NetworkSwitcher = () => {
+  const { chains, switchChain } = useSwitchChain()
+  const { isConnected, chain } = useAccount()
 
-  // Get the configured networks from AppKit
-  const networks = appKit?.config?.networks || []
-
-  console.log(networks)
-  
-  useEffect(() => {
-    // Get current chain when component mounts
-    const fetchCurrentChain = async () => {
-      try {
-        if (appKit?.provider) {
-          const chainId = await appKit.provider.getChainId()
-          setCurrentChain(chainId)
-        }
-      } catch (err) {
-        console.error('Error fetching chain:', err)
-      }
-    }
-
-    fetchCurrentChain()
-    
-    // Set up event listener for chain changes
-    const handleChainChanged = (chainId) => {
-      setCurrentChain(chainId)
-      setIsLoading(false)
-      setPendingChainId(null)
-    }
-    
-    if (appKit?.provider) {
-      appKit.provider.on?.('chainChanged', handleChainChanged)
-    }
-
-    return () => {
-      // Clean up listeners
-      if (appKit?.provider) {
-        appKit.provider.off?.('chainChanged', handleChainChanged)
-      }
-    }
-  }, [appKit])
-
-  // Get the network name from its ID
-  const getNetworkName = (chainId) => {
-    const network = networks.find(n => n.chainId === Number(chainId))
-    return network ? network.name : 'Unknown'
-  }
-
-  const switchNetwork = async (chainId) => {
-    if (!appKit?.provider) {
-      setError({ message: 'Provider not available' })
-      return
-    }
-    
-    setIsLoading(true)
-    setPendingChainId(chainId)
-    setError(null)
-
-    try {
-      await appKit.provider.switchChain(chainId)
-      // The chain change event will update the UI
-    } catch (err) {
-      console.error('Error switching chain:', err)
-      setError({ message: err.message || 'Failed to switch network' })
-      setIsLoading(false)
-      setPendingChainId(null)
-    }
-  }
-
-  if (!appKit?.provider) {
-    return <p>Please connect your wallet first</p>
+  if (!isConnected) {
+    return (
+      <Card className="w-full border border-dashed">
+        <CardContent className="p-4 text-center text-gray-500">
+          <p>Connect your wallet to switch networks</p>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
-    <div>
-      <p>Connected to: <strong>{currentChain ? getNetworkName(currentChain) : 'Unknown'}</strong></p>
-
-      {networks.map((network) => (
-        Number(network.chainId) === Number(currentChain) ? null : (
-          <button
-            key={network.chainId}
-            onClick={() => switchNetwork(network.chainId)}
-            disabled={isLoading && pendingChainId === network.chainId}
-            className="mr-2 px-3 py-2 cursor-pointer bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400"
-          >
-            {isLoading && pendingChainId === network.chainId 
-              ? 'Switching...' 
-              : `Switch to ${network.name}`}
-          </button>
-        )
-      ))}
-
-      {error && <p className="text-red-500 mt-2">{error.message}</p>}
-    </div>
+    <Card className="w-full">
+      <CardHeader className="pb-2">
+        <h3 className="text-base font-medium">Select Network</h3>
+        <p className="text-sm text-gray-500">Choose a blockchain network to connect to</p>
+      </CardHeader>
+      <CardContent>
+        {chain && (
+          <h2 className='mb-2'>You are currently connected to <span className='bg-gray-50 text-green-700'>${chain.name}</span></h2>
+        )}
+        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+          {chains.map((chain) => (
+            <Button 
+              key={chain.id} 
+              onClick={() => switchChain({ chainId: chain.id })}
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-1 cursor-pointer"
+            >
+              {chain.name}
+            </Button>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   )
 }
+
+export default NetworkSwitcher
