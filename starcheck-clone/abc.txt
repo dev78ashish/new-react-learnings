@@ -1,7 +1,0 @@
-Today's Task | 3rd May
-
-Created footer and email signup components for the StackCheck clone website in React JS.
-Continued working on completing the UI of the website using React JS.
-Built a fully functional website clone in React JS.
-Learned how to handle device permissions in React Native.
-Added functionality to connect a wallet using Reown AppKit and Wagmi.
