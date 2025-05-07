@@ -25,11 +25,18 @@ const Main = () => {
           <span className="text-[#7E6AF0] main-heading">Check wallet risks</span> and <br />
           <div className="flex justify-center items-center gap-2 text-3xl sm:text-4xl md:text-6xl lg:text-7xl">
             <span>protect your crypto</span>
-            <img src={wallet} alt="Wallet icon" />
+            <img
+              src={wallet}
+              alt="Wallet icon"
+              className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[190px] h-auto"
+            />
           </div>
         </h1>
-        <p className='opacity-50 my-3 sm:text-lg md:text-xl lg:text-2xl max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[55%] lg:text-center'>Prevent USDT, Bitcoin, Ethereum, and 8000+ assets from being frozen by exchanges or custody services</p>
+        <p className="opacity-50 my-3 sm:text-lg md:text-xl lg:text-2xl max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[55%] lg:text-center">
+          Prevent USDT, Bitcoin, Ethereum, and 8000+ assets from being frozen by exchanges or custody services
+        </p>
       </section>
+
 
       <WalletChecker />
 
