@@ -119,11 +119,11 @@ export default function WalletChecker() {
       <appkit-button />
   
       {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 px-4 sm:px-0">
+       <div className="fixed inset-0 backdrop-blur-sm bg-black/20 flex items-center justify-center z-20 px-4 sm:px-0">
           <div className="bg-white rounded-2xl p-4 sm:p-6 max-w-md w-full relative overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setShowPopup(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              className="absolute cursor-pointer top-4 right-4 text-gray-500 hover:text-gray-700"
             >
               <X className="w-6 h-6" />
             </button>
