@@ -1,0 +1,6 @@
+Today's Task | 25th April
+
+Explore using web3.js to fetch Solana wallet balance and connect/disconnect wallet.
+Learn how to connect a Solana wallet like Phantom using libraries.
+Redesigned drag-and-drop UI for uploading multiple files at once.
+Test UI and wallet connection functionality for smooth integration.

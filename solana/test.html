@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 10px;
+            display: flex;
+            width: 100%;
+        }
+
+        .menu li {
+            position: relative;
+            /* padding: 10px 20px; */
+            cursor: pointer;
+            min-width: 200px;
+            text-align: center;
+            /* border: 1px solid black; */
+        }
+
+        .menu li::after{
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: black;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu li:hover::after{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="menu">
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</body>
+
+</html>
