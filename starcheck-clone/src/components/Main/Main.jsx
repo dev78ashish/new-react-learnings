@@ -1,6 +1,5 @@
 import React from 'react';
 import wallet from '../../assets/wallet-icons.png';
-import './Main.css'
 import WalletChecker from './components/WalletChecker';
 import HowWorksSection from './components/HowWorksSection';
 import EmailSignup from './components/EmailSignup';
