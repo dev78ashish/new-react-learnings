@@ -1,0 +1,5 @@
+.tilted{
+    background: linear-gradient(180deg, rgba(1, 4, 22, 0) 0%, #D33FC2 64.9%, #F7666D 100%);
+    backdrop-filter: blur(270.20001220703125px);
+}
+
