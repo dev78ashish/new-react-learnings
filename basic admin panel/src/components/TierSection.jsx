@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
     DialogTrigger,
     DialogContent,
     DialogHeader,
-    DialogTitle
+    DialogTitle,
+    DialogClose
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Trash2Icon } from 'lucide-react'
-import axios from 'axios'
 import {
     flexRender,
     getCoreRowModel,
@@ -25,12 +25,15 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { useCreateTierMutation, useDeleteTierMutation, useGetTiersQuery } from '../redux/slices/tierApiSlice'
 
 const TierSection = () => {
-    const [tiers, setTiers] = useState([])
     const [form, setForm] = useState({ name: '', startDate: '', endDate: '', price: '' })
     const [open, setOpen] = useState(false)
-    const [isDeleting, setIsDeleting] = useState(false)
+
+    const { data: tiers = [], refetch } = useGetTiersQuery()
+    const [createTier] = useCreateTierMutation()
+    const [deleteTier, { isLoading: isDeleting }] = useDeleteTierMutation()
 
     const columns = [
         {
@@ -103,19 +106,9 @@ const TierSection = () => {
             (tiers.length === 0 || new Date(form.startDate) > new Date(tiers[tiers.length - 1].endDate))
         ) {
             try {
-                const token = localStorage.getItem('token')
-
-                await axios.post(`${import.meta.env.VITE_APP_URL}/tiers`, form, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
-
+                await createTier(form).unwrap()
                 setForm({ name: '', startDate: '', endDate: '', price: '' })
                 setOpen(false)
-
-                fetchTiers()
             } catch (error) {
                 console.error('Error adding tier:', error)
                 alert('Failed to add tier. Please try again.')
@@ -127,52 +120,22 @@ const TierSection = () => {
 
     const handleDeleteTier = async (id) => {
         try {
-            setIsDeleting(true)
-            const token = localStorage.getItem('token')
-
-            await axios.delete(`${import.meta.env.VITE_APP_URL}/tiers/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-
-            fetchTiers()
+            await deleteTier(id).unwrap()
         } catch (error) {
             console.error('Error deleting tier:', error)
             alert('Failed to delete tier. Please try again.')
-        } finally {
-            setIsDeleting(false)
         }
     }
-
-    const fetchTiers = async () => {
-        try {
-            const token = localStorage.getItem('token')
-
-            const res = await axios.get(`${import.meta.env.VITE_APP_URL}/tiers`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-
-            setTiers(res.data)
-        } catch (e) {
-            console.log('Error fetching tiers:', e)
-        }
-    }
-
-    useEffect(() => {
-        fetchTiers()
-    }, [])
 
     return (
-        <div className="pay-box shadow-xl rounded-2xl p-8 w-full border border-[#FE3D76]">
+        <div className="pay-box hover-shadow shadow-xl rounded-2xl p-8 w-full border border-[#FE3D76]">
             <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Tiers</h2>
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
                         <Button className="bg-[#FE3D76] hover:bg-[#FE3D76]/80 text-white shadow-md shadow-[#FE3D76]/20">Add Tier</Button>
                     </DialogTrigger>
+
                     <DialogContent className="max-w-md bg-[#150813]/90 backdrop-blur-md border border-[#FE3D76]">
                         <DialogHeader>
                             <DialogTitle className="text-lg font-semibold text-white">Add Tier</DialogTitle>
@@ -180,10 +143,10 @@ const TierSection = () => {
                         <div className="space-y-4 mt-2">
                             <div className="space-y-1">
                                 <Label className="text-sm text-gray-200">Name</Label>
-                                <Input 
-                                    name="name" 
-                                    value={form.name} 
-                                    onChange={handleInputChange} 
+                                <Input
+                                    name="name"
+                                    value={form.name}
+                                    onChange={handleInputChange}
                                     className="bg-[#2C1228]/50 border-[#FE3D76]/50 text-white focus:ring-[#FE3D76] focus:border-[#FE3D76]"
                                 />
                             </div>
@@ -209,24 +172,34 @@ const TierSection = () => {
                             </div>
                             <div className="space-y-1">
                                 <Label className="text-sm text-gray-200">Price</Label>
-                                <Input 
-                                    name="price" 
-                                    value={form.price} 
-                                    onChange={handleInputChange} 
+                                <Input
+                                    name="price"
+                                    value={form.price}
+                                    onChange={handleInputChange}
                                     className="bg-[#2C1228]/50 border-[#FE3D76]/50 text-white focus:ring-[#FE3D76] focus:border-[#FE3D76]"
                                 />
                             </div>
-                            <Button 
-                                className="w-full mt-4 bg-[#FE3D76] hover:bg-[#FE3D76]/80 text-white" 
-                                onClick={handleAddTier}
-                            >
-                                Add
-                            </Button>
+                            <div className='flex gap-2'>
+                                <DialogClose asChild>
+                                    <Button
+                                        // variant="outline"
+                                        className="bg-transparent flex-1/2 text-[#FE3D76] border border-[#FE3D76]/50 hover:border-[#FE3D76]"
+                                    >
+                                        Cancel
+                                    </Button>
+                                </DialogClose>
+                                <Button
+                                    className="flex-1/2 bg-[#FE3D76] hover:bg-[#FE3D76]/80 text-white"
+                                    onClick={handleAddTier}
+                                >
+                                    Add
+                                </Button>
+                            </div>
                         </div>
                     </DialogContent>
                 </Dialog>
             </div>
-        
+
             {tiers.length > 0 ? (
                 <>
                     <div className="rounded-lg border border-[#FE3D76]/30 overflow-auto bg-[#2C1228]/30 scrollbar-pink">

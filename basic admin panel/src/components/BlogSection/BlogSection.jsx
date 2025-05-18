@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Plus, Pencil, Trash, LucideSquareArrowOutUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import { Plus, Pencil, Trash, LucideSquareArrowOutUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BlogDialog from "./components/BlogDialog";
-import axios from "axios";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Link } from "react-router-dom";
 import {
@@ -14,82 +13,27 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 import { SkeletonCard } from "./components/SkeletonCard";
-// import { useGetBlogsQuery } from "../../redux/slices/blogApiSlice";
+import { useGetBlogsQuery, useDeleteBlogMutation } from "../../redux/slices/blogApiSlice";
 
 const BlogSection = () => {
-    const [blogData, setBlogData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { data: blogData = [], error, isLoading, refetch } = useGetBlogsQuery();
+    const [deleteBlog] = useDeleteBlogMutation();
     const [blogToEdit, setBlogToEdit] = useState(null);
-
-    // const {data, error: rtkError, isLoading} = useGetBlogsQuery();
-    
 
     const [currentPage, setCurrentPage] = useState(1);
     const blogsPerPage = 6;
 
-    const getAllBlogs = async () => {
-        setLoading(true);
-        setError(null);
+    const handleDeleteBlog = async (id) => {
         try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                throw new Error("Authentication token not found");
-            }
-
-            const res = await axios.get(`${import.meta.env.VITE_APP_URL}/blogs`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            setBlogData(res.data);
+            await deleteBlog(id).unwrap();
         } catch (err) {
-            const errorMessage = err.response?.data?.message || err.message || "Failed to fetch blogs";
-            setError(errorMessage);
-
-        } finally {
-            setLoading(false);
+            console.log(err.data?.message || err.error || "Failed to delete blog");
         }
     };
 
-    const deleteBlog = async (id) => {
-        try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                throw new Error("Authentication token not found");
-            }
-
-            await axios.delete(`${import.meta.env.VITE_APP_URL}/blogs/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            setBlogData(prevData => prevData.filter(blog => blog._id !== id));
-
-        } catch (err) {
-            const errorMessage = err.response?.data?.message || err.message || "Failed to delete blog";
-            console.log(errorMessage);
-        }
-    };
-
-    const handleBlogUpdated = (updatedBlog) => {
-        setBlogData(prevData =>
-            prevData.map(blog =>
-                blog._id === updatedBlog._id ? updatedBlog : blog
-            )
-        );
+    const handleBlogUpdated = () => {
         setBlogToEdit(null);
     };
-
-    const handleBlogAdded = (newBlog) => {
-        setBlogData(prevData => [...prevData, newBlog]);
-    };
-
-    useEffect(() => {
-        getAllBlogs();
-    }, []);
 
     function shortText(text) {
         return text.split(' ').slice(0, 5).join(' ') + '...';
@@ -108,10 +52,10 @@ const BlogSection = () => {
     }
 
     return (
-        <div className="w-full  p-6 rounded-xl border border-[#FE3D76]/30">
+        <div className="w-full p-6 rounded-xl border border-[#FE3D76]/30">
             <div className="flex flex-wrap items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-white">Your Blog Collection</h2>
-                <BlogDialog onBlogAdded={handleBlogAdded} blogToEdit={null}>
+                <BlogDialog onBlogAdded={refetch} blogToEdit={null}>
                     <Button className="cursor-pointer shadow-custom bg-[#FE3D76] hover:bg-[#FE3D76]/80 text-white font-medium px-4 py-2 rounded-lg transition-all">
                         <span>Add Blog</span>
                         <Plus className="w-4 h-4 ml-2" />
@@ -119,15 +63,15 @@ const BlogSection = () => {
                 </BlogDialog>
             </div>
 
-            {loading ? (
+            {isLoading ? (
                 <SkeletonCard />
             ) : error ? (
                 <div className="p-4 border rounded-md bg-[#FE3D76]/10 border-[#FE3D76]/40 text-[#FE3D76]">
-                    <p>{error}</p>
+                    <p>{error?.data?.message || error?.error || "Failed to fetch blogs"}</p>
                     <Button
                         variant="outline"
                         className="mt-2 border-[#FE3D76]/50 text-white hover:bg-[#FE3D76]/20"
-                        onClick={getAllBlogs}
+                        onClick={refetch}
                     >
                         Retry
                     </Button>
@@ -139,7 +83,7 @@ const BlogSection = () => {
                             currentBlogs.map((blog, index) => (
                                 <div
                                     key={blog._id || index}
-                                    className="border border-[#FE3D76]/30 rounded-xl overflow-hidden shadow-md hover:shadow-lg shadow-[#FE3D76]/10 transition bg-[#2C1228]/50 min-w-[150px] w-full max-w-full transform hover:-translate-y-1 hover:shadow-custom"
+                                    className="border border-[#FE3D76]/30 rounded-xl overflow-hidden shadow-md hover:shadow-lg shadow-[#FE3D76]/10 transition bg-[#2C1228]/50 min-w-[150px] hover-shadow w-full max-w-full transform hover:-translate-y-1"
                                 >
                                     <div className="relative">
                                         <img
@@ -189,7 +133,7 @@ const BlogSection = () => {
                                                         <AlertDialogFooter>
                                                             <AlertDialogCancel className="bg-transparent border-[#FE3D76]/50 text-gray-200 hover:bg-[#FE3D76]/20">Cancel</AlertDialogCancel>
                                                             <AlertDialogAction
-                                                                onClick={() => deleteBlog(blog._id)}
+                                                                onClick={() => handleDeleteBlog(blog._id)}
                                                                 className="bg-[#FE3D76]/80 hover:bg-[#FE3D76] text-white"
                                                             >
                                                                 Delete

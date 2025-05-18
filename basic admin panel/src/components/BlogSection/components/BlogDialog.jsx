@@ -23,10 +23,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { blogSchema } from "../../../schema/formSchema";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import axios from "axios";
+import { useCreateBlogMutation, useUpdateBlogMutation } from "../../../redux/slices/blogApiSlice";
 
 function BlogDialog({ children, onBlogAdded, onBlogUpdated, blogToEdit }) {
     const isEditMode = !!blogToEdit;
+    const [createBlog, { isLoading: isCreating }] = useCreateBlogMutation();
+    const [updateBlog, { isLoading: isUpdating }] = useUpdateBlogMutation();
+
+    const isSubmitting = isCreating || isUpdating;
 
     const form = useForm({
         resolver: zodResolver(blogSchema),
@@ -57,10 +61,8 @@ function BlogDialog({ children, onBlogAdded, onBlogUpdated, blogToEdit }) {
     }, [blogToEdit, form]);
 
     const [isOpen, setIsOpen] = React.useState(false);
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const onSubmit = async (data) => {
-        setIsSubmitting(true);
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("heading", data.heading);
@@ -71,54 +73,25 @@ function BlogDialog({ children, onBlogAdded, onBlogUpdated, blogToEdit }) {
         }
 
         try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                throw new Error("Authentication token not found");
-            }
-
-            let response;
-
             if (isEditMode) {
-                response = await axios.put(
-                    `${import.meta.env.VITE_APP_URL}/blogs/${blogToEdit._id}`,
-                    formData,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
-                );
-
-
+                const response = await updateBlog({ id: blogToEdit._id, formData }).unwrap();
+                
                 if (onBlogUpdated) {
-                    onBlogUpdated(response.data);
+                    onBlogUpdated(response);
                 }
             } else {
-                response = await axios.post(
-                    `${import.meta.env.VITE_APP_URL}/blogs`,
-                    formData,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
-                );
-
-
+                const response = await createBlog(formData).unwrap();
+                
                 if (onBlogAdded) {
-                    onBlogAdded(response.data);
+                    onBlogAdded(response);
                 }
             }
 
             form.reset();
             setIsOpen(false);
         } catch (err) {
-            const errorMessage = err.response?.data?.message || err.message || `Failed to ${isEditMode ? 'update' : 'add'} blog`;
+            const errorMessage = err.data?.message || err.error || `Failed to ${isEditMode ? 'update' : 'add'} blog`;
             console.log(errorMessage);
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
@@ -210,7 +183,7 @@ function BlogDialog({ children, onBlogAdded, onBlogUpdated, blogToEdit }) {
                                             <Input
                                                 type="file"
                                                 accept="image/*"
-                                                className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-[#FE3D76]/20 file:text-[#FE3D76] hover:file:bg-[#FE3D76]/30 text-white bg-[#2C1228]/50 border-[#FE3D76]/50"
+                                                className="w-full file:mr-4 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-[#FE3D76]/20 file:text-[#FE3D76] hover:file:bg-[#FE3D76]/30 text-white bg-[#2C1228]/50 border-[#FE3D76]/50"
                                                 onChange={(e) => {
                                                     field.onChange(e.target.files);
                                                 }}

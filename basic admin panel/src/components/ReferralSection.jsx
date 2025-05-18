@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,42 +9,21 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import axios from "axios";
+import { useGetReferalQuery, useUpdateReferalMutation } from "../redux/slices/referalApiSlice";
 
 function ReferralPopover({ value, onUpdate }) {
   const [newValue, setNewValue] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-
-  useEffect(() => {
-    setNewValue(value);
-  }, [value]);
-
   
+  const [updateReferal, { isLoading }] = useUpdateReferalMutation();
+
   const handleUpdate = async () => {
     try {
-      setIsLoading(true);
-      const token = localStorage.getItem('token');
-
-      const res = await axios.put(`${import.meta.env.VITE_APP_URL}/refer/update`, {
-        refer_num: newValue
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
+      await updateReferal(newValue);
       onUpdate();
-
       setIsOpen(false);
-      console.log(res);
-
     } catch (e) {
       console.error("Error updating referral value:", e);
-
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -105,42 +84,16 @@ function ReferralPopover({ value, onUpdate }) {
 }
 
 const ReferralSection = () => {
-  const [referralValue, setReferralValue] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchReferralValue = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      const token = localStorage.getItem('token');
-
-      const res = await axios.get(`${import.meta.env.VITE_APP_URL}/refer`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      setReferralValue(res.data.refer_num);
-    } catch (e) {
-      console.error("Error fetching referral value:", e);
-      setError("Could not load referral value. Please try again later.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchReferralValue();
-  }, []);
+  const { data, error, isLoading, refetch } = useGetReferalQuery();
+  const referralValue = data?.refer_num;
 
   const handleReferralUpdate = () => {
-    fetchReferralValue();
+    refetch();
   };
 
   return (
     <div className="w-full">
-      <div className="pay-box rounded-xl shadow-md p-6 border border-[#FE3D76]">
+      <div className="pay-box hover-shadow rounded-xl shadow-md p-6 border border-[#FE3D76]">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-white">Referral Reward</h2>
         </div>
@@ -152,11 +105,11 @@ const ReferralSection = () => {
             </div>
           ) : error ? (
             <div className="bg-[#FE3D76]/10 border border-[#FE3D76]/40 rounded-lg p-4">
-              <p className="text-[#FE3D76] text-sm">{error}</p>
+              <p className="text-[#FE3D76] text-sm">Could not load referral value. Please try again later.</p>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={fetchReferralValue}
+                onClick={refetch}
                 className="mt-3 text-xs flex items-center gap-1 border-[#FE3D76]/40 text-[#FE3D76] hover:bg-[#FE3D76]/20"
               >
                 <RefreshCw className="h-3 w-3" />

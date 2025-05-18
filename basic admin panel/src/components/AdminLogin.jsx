@@ -143,14 +143,14 @@ export default function AdminLogin() {
                                             </button>
                                         </div>
                                     </FormControl>
-                                    <div className="flex justify-end">
+                                    {/* <div className="flex justify-end">
                                         <Link
                                             to="/change-password"
                                             className="text-sm text-purple-300 hover:text-purple-100 font-medium transition-colors"
                                         >
                                             Forgot password?
                                         </Link>
-                                    </div>
+                                    </div> */}
                                     <FormMessage className="text-pink-300" />
                                 </FormItem>
                             )}
