@@ -15,10 +15,23 @@ const ScrollAnimation = () => {
   const containerRef = useRef(null);
   const imageRefs = useRef([]);
   const sectionRefs = useRef([]);
+  const imageContainerRef = useRef(null);
 
   useEffect(() => {
     const sections = sectionRefs.current;
     const images = imageRefs.current;
+    const imageContainer = imageContainerRef.current;
+
+    // Image container opacity animation
+    gsap.to(imageContainer, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'bottom center',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
 
     sections.forEach((section, index) => {
       if (images[index]) {
@@ -56,17 +69,19 @@ const ScrollAnimation = () => {
       className="relative w-full bg-black overflow-hidden"
       style={{ height: '600vh' }}
     >
-      {/* Sticky image strip (inside this component only) */}
+      {/* Sticky image strip - centered in middle of screen */}
       <div
-  className="sticky top-10 h-[80vh]  z-10 flex gap-5 justify-center "
+        ref={imageContainerRef}
+        className="fixed inset-0 top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 z-10 flex gap-5 justify-center items-center"
       >
         {images.map((img, index) => (
           <img
             key={index}
             src={img}
             ref={(el) => (imageRefs.current[index] = el)}
-            className=" opacity-0 transition-opacity duration-300 ease-in-out"
+            className="opacity-0 transition-opacity duration-300 ease-in-out"
             alt={`img${index + 1}`}
+            style={{ maxHeight: 'none', maxWidth: 'none' }} // Use natural image dimensions
           />
         ))}
       </div>
@@ -90,4 +105,4 @@ const ScrollAnimation = () => {
   );
 };
 
-export default ScrollAnimation;
+export default ScrollAnimation
