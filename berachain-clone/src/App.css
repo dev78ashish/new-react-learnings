@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Hand:wght@400..700&display=swap');
-
 @font-face {
   font-family: 'MyFont';
-  src: url('./assets/fonts/MikadoBold_DEMO.otf') format('opentype');
+  src: url('./assets/fonts/Mikado.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,12 +17,6 @@
     transform: translate(-50%, -20px);
   }
 }
-
-/* body {
-  font-family: "Edu SA Hand", cursive;
-  font-optical-sizing: auto;
-  font-style: normal;
-} */
 
 .floating-text {
   left: 50%;
@@ -60,8 +52,6 @@
   animation: floatAndRotate 4s ease-in-out infinite;
 }
 
-
-/* Floating Animation */
 .floating-rocks {
   animation: floatRocks 4s ease-in-out infinite alternate;
 }
@@ -105,7 +95,6 @@
 
 
 .outlined-text {
-  /* or any fill color */
   -webkit-text-stroke: 1px black; /* stroke width and color */
 }
 
@@ -140,4 +129,3 @@
 .animate-scroll {
   animation: scroll 10s linear infinite;
 }
-
