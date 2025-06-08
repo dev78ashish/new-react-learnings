@@ -21,10 +21,10 @@ const App = () => {
 
   return (
     <div className='h-screen w-full bg-[#7BBDEA]'>
-      {/* <Contact />
+      <Contact />
       <Careers />
       <BeaconUFO />
-      <BeraEcosystem /> */}
+      <BeraEcosystem />
       {/* <CharacterScroller /> */}
       <ScrollAnimation />
       <CorePrinciples />

@@ -1,10 +1,8 @@
 import React from 'react'
-import '../components/styles/LiquidityComp.css'
 import teddy from '../assets/proof/teddy.jpg'
 import ball from '../assets/proof/ball.jpg'
 import cloud1 from '../assets/proof/cloudBottom.jpg'
 import logos from '../assets/companies'
-import '../components/styles/ProofLiquidity.css'
 import cloud2 from '../assets/proof/cloud.jpg'
 
 const BallText = ({ text }) => {
