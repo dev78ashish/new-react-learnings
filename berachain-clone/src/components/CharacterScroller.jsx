@@ -24,12 +24,12 @@ const CharacterScroller = () => {
     const images = [image1Ref.current, image2Ref.current, image3Ref.current, image4Ref.current, image5Ref.current]
 
     const texts = [
-  "Started as an NFT project for fun <br> in the DeFi ecosystem",
-  "Made the rebase and grew a massive cult community",
-  "Identified major gaps in protocol level alignment between liquidity and security",
-  "Raised VC from some of the best firms in the game",
-  "Launched a chain 🚀 🚀 🚀"
-]
+      "Started as an NFT project for fun <br> in the <span class='text-[#F0D8A7]'>DeFi</span> ecosystem",
+      "Made the <span class='text-[#F0D8A7]'>NFTs</span> rebase and grew a massive cult community",
+      "Identified major gaps in protocol level alignment between <span class='text-[#F0D8A7]'>liquidity and security</span>",
+      "Raised VC from some of the <span class='text-[#F0D8A7]'>best firms</span> in the game",
+      "<span class='text-[#F0D8A7]'>Launched</span> a chain 🚀 🚀 🚀"
+    ]
 
 
     // Ensure all images start visible

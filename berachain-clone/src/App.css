@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Hand:wght@400..700&display=swap');
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('./assets/fonts/MikadoBold_DEMO.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.custom-font {
+  font-family: 'MyFont';
+}
+
 @keyframes float {
   0%, 100% {
     transform: translate(-50%, 0);
@@ -9,11 +20,11 @@
   }
 }
 
-body {
+/* body {
   font-family: "Edu SA Hand", cursive;
   font-optical-sizing: auto;
   font-style: normal;
-}
+} */
 
 .floating-text {
   left: 50%;

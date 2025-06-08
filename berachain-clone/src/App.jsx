@@ -21,7 +21,7 @@ const App = () => {
 
 
   return (
-    <div className='h-screen w-full bg-[#7BBDEA]'>
+    <div className='h-screen w-full custom-font bg-[#7BBDEA]'>
       <Contact />
       <Careers />
       <CharacterScroller />
