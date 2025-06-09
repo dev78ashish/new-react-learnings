@@ -9,7 +9,7 @@ import BeraEcosystem from './components/BeraEcosystem'
 import BeaconUFO from './components/BeaconUFO'
 import Careers from './components/Careers'
 import Contact from './components/Contact'
-import CharacterScroller from './components/CharacterScroller/CharacterScroller'
+import ResponsiveCharacterScroller from './components/CharacterScroller/ResponsiveCharacterScroller'
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
     <div className='h-screen w-full custom-font bg-[#7BBDEA]'>
       <Contact />
       <Careers />
-      <CharacterScroller />
+      <ResponsiveCharacterScroller />
       <BeaconUFO />
       <BeraEcosystem />
       <CorePrinciples />

@@ -24,12 +24,6 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.comic-neue-bold {
-  font-family: "Comic Neue", cursive;
-  font-weight: 700;
-  font-style: normal;
-}
-
 @keyframes floatAndRotate {
   0% {
     transform: translateY(0px) rotate(0deg);

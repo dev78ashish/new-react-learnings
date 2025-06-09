@@ -27,7 +27,7 @@ const Careers = () => {
                 </div>
 
                 {/* Man */}
-                <img className='floating-man h-[60vh] w-auto ' src={man} alt="man" />
+                <img className='floating-man h-[60vh] w-auto z-10 ' src={man} alt="man" />
 
                 {/* Right Rocks */}
                 <div className='relative w-[25vw] h-[60vh]'>

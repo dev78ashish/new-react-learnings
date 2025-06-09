@@ -63,7 +63,7 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
-      <div className='fixed top-0 lg:top-auto lg:bottom-[60px] lg:pb-0 pb-5 bg-[#8AC5EA] items-center w-full justify-center z-10 flex flex-wrap'>
+      <div className='fixed top-0 lg:top-auto lg:bottom-[60px] lg:pb-0 pb-5 bg-[#8AC5EA] items-center w-full justify-center z-16 flex flex-wrap'>
         <img src={rocket} className='w-auto h-14' alt="rocket" />
         <img src={banner} className='w-auto h-8' alt="banner" />
         <div className='flex justify-center gap-2 flex-wrap ml-15'>

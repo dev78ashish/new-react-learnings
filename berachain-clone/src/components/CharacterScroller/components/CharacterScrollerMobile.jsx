@@ -15,14 +15,14 @@ const CharacterScrollerMobile = () => {
   const imageRefs = useRef([]);
   const textRef = useRef(null);
 
-  const images = [image1, image2, image3, image4, image5];
+  const images = [image1, image2, image3, image4, image5].reverse();
   const texts = [
     "Started as an NFT project for fun <br> in the <span class='text-[#F0D8A7]'>DeFi</span> ecosystem",
     "Made the <span class='text-[#F0D8A7]'>NFTs</span> rebase and grew a massive cult community",
     "Identified major gaps in protocol level alignment between <span class='text-[#F0D8A7]'>liquidity and security</span>",
     "Raised VC from some of the <span class='text-[#F0D8A7]'>best firms</span> in the game",
     "<span class='text-[#F0D8A7]'>Launched</span> a chain 🚀 🚀 🚀"
-  ];
+  ].reverse();
 
   useEffect(() => {
     // Clear any existing ScrollTriggers
@@ -91,7 +91,7 @@ const CharacterScrollerMobile = () => {
             ref={(el) => (imageRefs.current[i] = el)}
             src={src}
             alt={`character ${i + 1}`}
-            className="absolute w-[40vw] max-w-sm object-contain"
+            className="absolute w-[20vw] max-w-sm object-contain"
 
           />
         ))}
