@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import cloud1 from '../assets/clouds/cloud1.jpg'
 import cloud2 from '../assets/clouds/cloud2.jpg'
+import cloud3 from '../assets/clouds/cloud3.jpg'
 import cloud4 from '../assets/clouds/cloud4.jpg'
 import teddy from '../assets/teddy.jpg'
 import { gsap } from 'gsap';
@@ -64,9 +65,9 @@ const LiquidityComp = () => {
     return (
         <div 
             ref={containerRef} 
-            className='w-full relative overflow-hidden bg-gradient-to-b min-h-screen'
+            className='w-full relative overflow-x-clip bg-gradient-to-b min-h-screen'
             style={{ 
-                backgroundImage: 'linear-gradient(to bottom, #4FA1E3, #7BBDEA)',
+                background: 'linear-gradient(to bottom, #4FA1E3, #7BBDEA)',
                 height: 'clamp(100vh, 150vh, 200vh)'
             }}
         >
@@ -89,23 +90,13 @@ const LiquidityComp = () => {
             <img
                 src={teddy}
                 alt='teddy-static'
-                className='block lg:hidden absolute bottom-0 left-0 z-10'
-                style={{ 
-                    width: 'clamp(100px, 30vw, 144px)',
-                    height: 'auto'
-                }}
+                className='block lg:hidden absolute top-0 left-0 h-auto w-[300px] z-10'
             />
 
             <img 
                 src={cloud4} 
                 alt="cloud4" 
-                className='absolute floating z-5'
-                style={{
-                    right: 'clamp(10px, 15vw, 280px)',
-                    top: 'clamp(60px, 15vh, 240px)',
-                    width: 'clamp(80px, 20vw, 200px)',
-                    height: 'auto'
-                }}
+                className='absolute floating z-5 w-auto h-[35vh] right-[25%] top-[10%]'
             />
 
             <div className='relative z-10 px-4 sm:px-6 lg:px-8'>
@@ -114,8 +105,9 @@ const LiquidityComp = () => {
                     style={{
                         fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
                         maxWidth: 'min(90vw, 800px)',
-                        marginTop: 'clamp(300px, 40vh, 700px)',
-                        lineHeight: '1.2'
+                        marginTop: '0',
+                        lineHeight: '1.2',
+                        paddingTop: '500px'
                     }}
                 >
                     An EVM-identical L1 aligning security and liquidity powered by{' '}
@@ -127,13 +119,7 @@ const LiquidityComp = () => {
                     <img 
                         src={cloud2} 
                         alt="cloud2" 
-                        className='absolute floating opacity-50'
-                        style={{
-                            bottom: 'clamp(-20px, -5vh, 0px)',
-                            left: 'clamp(-40px, -10vw, 8px)',
-                            width: 'clamp(120px, 25vw, 200px)',
-                            height: 'auto'
-                        }}
+                        className='absolute floating opacity-50 bottom-[20px] w-auto h-[120px]'
                     />
                 </div>
             </div>
@@ -149,6 +135,8 @@ const LiquidityComp = () => {
                     height: 'auto'
                 }}
             />
+
+            <img src={cloud3} className='w-auto h-[25vh] floating absolute right-0 bottom-[20%]' alt='cloud3'/>
         </div>
     )
 }

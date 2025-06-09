@@ -7,9 +7,10 @@ import ProofLiquidity from './components/ProofLiquidity'
 import CorePrinciples from './components/CorePrinciples'
 import BeraEcosystem from './components/BeraEcosystem'
 import BeaconUFO from './components/BeaconUFO'
-import CharacterScroller from './components/CharacterScroller'
 import Careers from './components/Careers'
 import Contact from './components/Contact'
+import CharacterScroller from './components/CharacterScroller/CharacterScroller'
+
 
 const App = () => {
 

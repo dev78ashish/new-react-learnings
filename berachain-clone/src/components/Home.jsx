@@ -17,7 +17,7 @@ const Home = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: 'top center',
+                start: 'top 90%',
                 end: '+=200',
                 scrub: true,
             }
@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
         <div ref={containerRef} className='relative bg-[#7BBDEA]'>
-            <h1 className='floating-text absolute opacity-35 font-extrabold flex items-center bottom-20 text-6xl z-15'>
+            <h1 className='floating-text absolute opacity-35 font-extrabold flex items-center lg:bottom-40 bottom-15 lg:text-6xl text-4xl z-15'>
                 Up Only <ArrowUp size={65} />
             </h1>
 
@@ -59,7 +59,7 @@ const Home = () => {
 
             <div className='fixed left-1/2 top-1/2 -translate-x-1/2 flex flex-col justify-center items-center'>
                 <img ref={logoRef} src={logo} className='w-auto h-10' alt="logo" />
-                <p ref={textRef} className='outlined-text font-extrabold text-8xl text-white'>Berachain</p>
+                <p ref={textRef} className='outlined-text font-extrabold text-9xl text-white'>Berachain</p>
             </div>
         </div>
     )

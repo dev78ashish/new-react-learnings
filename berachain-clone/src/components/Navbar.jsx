@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Menu, X, ChevronUp, ChevronDown } from 'lucide-react';
 import logo_white from '../assets/logo_white.svg'
 import logo_black from '../assets/logo_black.svg'
+import rocket from '../assets/nav_icons/rocket.png'
+import banner from '../assets/nav_icons/banner-text.png'
+import berachain from '../assets/nav_icons/berachain.svg'
+import fly from '../assets/nav_icons/fly.svg'
+import bee from '../assets/nav_icons/bee.svg'
 
 
 const Navbar = () => {
@@ -22,7 +27,7 @@ const Navbar = () => {
         className={`fixed top-0 left-0 w-full h-full bg-white text-black transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : '-translate-x-full'
           } lg:hidden`}
       >
-        <div className="flex justify-between p-6"> 
+        <div className="flex justify-between p-6">
           <img src={logo_black} className='w-auto h-8' alt="logo" />
           <X className="cursor-pointer" size={28} onClick={() => setIsOpen(false)} />
         </div>
@@ -58,6 +63,22 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
+      <div className='fixed top-0 lg:top-auto lg:bottom-[60px] lg:pb-0 pb-5 bg-[#8AC5EA] items-center w-full justify-center z-10 flex flex-wrap'>
+        <img src={rocket} className='w-auto h-14' alt="rocket" />
+        <img src={banner} className='w-auto h-8' alt="banner" />
+        <div className='flex justify-center gap-2 flex-wrap ml-15'>
+          <button className='flex border border-white text-white rounded-lg px-2 py-1 gap-2'>
+            <img src={berachain} alt="berachain" className='w-auto h-5' /> Claim Airdrop
+          </button>
+          <button className='flex border border-white text-white rounded-lg px-2 py-1 gap-2'>
+            <img src={bee} alt="berachain" className='w-auto h-5' /> Visit BeraHub
+          </button>
+          <button className='flex border border-white text-white rounded-lg px-2 py-1 gap-2'>
+            <img src={fly} alt="berachain" className='w-auto h-5' /> Bridge Funds
+          </button>
+        </div>
+      </div>
+
     </>
   );
 };

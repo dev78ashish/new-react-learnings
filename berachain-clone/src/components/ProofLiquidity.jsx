@@ -2,6 +2,7 @@ import React from 'react'
 import teddy from '../assets/proof/teddy.jpg'
 import ball from '../assets/proof/ball.jpg'
 import cloud1 from '../assets/proof/cloudBottom.jpg'
+import cloud3 from '../assets/proof/cloudTop.jpg'
 import logos from '../assets/companies'
 import cloud2 from '../assets/proof/cloud.jpg'
 
@@ -21,6 +22,8 @@ const ProofLiquidity = () => {
 
   return (
     <div className='w-full relative bg-[#4FA1E3] overflow-hidden'>
+
+      <img src={cloud3} alt="cloud" className='absolute -right-[35%] top-[40%] h-[40vh] w-auto floating' />
 
       <div className='w-full py-6 px-4 sm:px-7 mb-[150px] sm:mb-[250px]'>
         <p className='outlined-text m-auto max-w-max text-white font-extrabold text-2xl sm:text-4xl md:text-5xl text-center mb-10 sm:mb-14'>
@@ -55,7 +58,7 @@ const ProofLiquidity = () => {
         <BallText text={'Align protocols and validators'} />
       </div>
 
-      <div className='outlined-text text-white text-center font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl px-4 relative z-10'>
+      <div className='outlined-text text-white text-center font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl px-4 relative '>
         <span className='text-[#EFD7A8]'>Proof Of Liquidity</span> creates a cooperative economy that rewards working <br className='hidden md:inline' />
         capital by aligning incentives across the network
       </div>

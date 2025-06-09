@@ -22,7 +22,7 @@ const CorePrinciples = () => {
               <span className='text-[#F0D8A7]'> validators</span>
             </p>
           </div>
-          <img src={logos.logo1} alt="logo" className='absolute bottom-0 left-0 w-[80px] sm:w-auto' />
+          <img src={logos.logo1} alt="logo" className='absolute bottom-0 left-0  sm:w-auto' />
         </div>
 
         <div className='w-full sm:w-[300px] backdrop-blur-md bg-white/20 rounded-xl h-[550px] relative'>
@@ -36,7 +36,7 @@ const CorePrinciples = () => {
               towards decentralized dApps building on Berachain
             </p>
           </div>
-          <img src={logos.logo2} alt="logo" className='absolute bottom-0 left-0 w-[80px] sm:w-auto' />
+          <img src={logos.logo2} alt="logo" className='absolute bottom-0 left-0  sm:w-auto' />
         </div>
 
         <div className='w-full sm:w-[300px] backdrop-blur-md bg-white/20 rounded-xl h-[550px] relative'>
@@ -49,7 +49,7 @@ const CorePrinciples = () => {
               compatible with all existing ethereum ERCs and opcodes
             </p>
           </div>
-          <img src={logos.logo3} alt="logo" className='absolute bottom-0 left-1/2 -translate-x-1/2 w-[100px] sm:w-auto h-[180px] sm:h-[250px]' />
+          <img src={logos.logo3} alt="logo" className='absolute bottom-0 left-1/2 -translate-x-1/2  sm:w-auto h-[180px] sm:h-[250px]' />
         </div>
 
       </div>

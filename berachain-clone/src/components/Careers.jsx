@@ -4,10 +4,15 @@ import rock2 from '../assets/rocks/rock2.jpg'
 import rock3 from '../assets/rocks/rock3.jpg'
 import rock1 from '../assets/rocks/rock1.jpg'
 import man from '../assets/man.jpg'
+import BlinkingBackground from './BlinkingBackground'
 
 const Careers = () => {
     return (
-        <div className='bg-[#15161F] w-full text-white h-[120vh]'>
+        <div className='bg-[#15161F] w-full text-white h-[120vh] relative'>
+            <div className='absolute inset-0'>
+                <BlinkingBackground dotCount={40} />
+            </div>
+
             <div className='text-center pt-10'>
                 <p className='text-5xl font-extrabold outlined-text'>Want to join us?</p>
                 <p className='flex m-auto justify-center items-center gap-2 mt-4 text-lg'>View Careers <ArrowRightIcon size={16} /></p>
@@ -32,29 +37,7 @@ const Careers = () => {
                 </div>
             </div>
 
-            <div className="absolute inset-0 ">
-                {/* Repeat these dots with random positions */}
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,1)] absolute top-[10%] left-[20%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_3px_rgba(255,255,255,1)] absolute top-[25%] left-[70%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_6px_2px_rgba(255,255,255,0.6)] absolute top-[60%] left-[40%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_9px_2px_rgba(255,255,255,0.7)] absolute top-[80%] left-[10%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] absolute top-[50%] left-[85%]"></div>
-            </div>
 
-            <div className="absolute inset-0 ">
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,1)] absolute top-[35%] left-[22%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_3px_rgba(255,255,255,1)] absolute top-[96%] left-[40%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_6px_2px_rgba(255,255,255,0.6)] absolute top-[22%] left-[44%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_9px_2px_rgba(255,255,255,0.7)] absolute top-[32%] left-[77%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] absolute top-[55%] left-[25%]"></div>
-            </div>
-            <div className="absolute inset-0 ">
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,1)] absolute top-[30%] left-[69%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_3px_rgba(255,255,255,1)] absolute top-[23%] left-[82%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_6px_2px_rgba(255,255,255,0.6)] absolute top-[33%] left-[43%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_9px_2px_rgba(255,255,255,0.7)] absolute top-[87%] left-[32%]"></div>
-                <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] absolute top-[11%] left-[13%]"></div>
-            </div>
         </div>
     )
 }

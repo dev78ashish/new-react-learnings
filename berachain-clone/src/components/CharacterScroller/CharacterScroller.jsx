@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react'
-import image1 from '../assets/cartoons/image1.jpg'
-import image2 from '../assets/cartoons/image2.jpg'
-import image3 from '../assets/cartoons/image3.jpg'
-import image4 from '../assets/cartoons/image4.jpg'
-import image5 from '../assets/cartoons/image5.jpg'
+import image1 from '../../assets/cartoons/image1.jpg'
+import image2 from '../../assets/cartoons/image2.jpg'
+import image3 from '../../assets/cartoons/image3.jpg'
+import image4 from '../../assets/cartoons/image4.jpg'
+import image5 from '../../assets/cartoons/image5.jpg'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import BlinkingBackground from '../BlinkingBackground'
+import useIsMobile from '../../hooks/useIsMobile'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,16 +34,14 @@ const CharacterScroller = () => {
     ]
 
 
-    // Ensure all images start visible
     gsap.set(images, { opacity: 1 })
 
     textRef.current.innerHTML = texts[0]
 
 
-    // Reverse order fade out: image5, image4, ..., image2 (image1 stays)
     const total = images.length
     images.slice(1).reverse().forEach((image, i) => {
-      const reverseIndex = total - 2 - i; // Matches the image being faded out
+      const reverseIndex = total - 2 - i; 
       gsap.to(image, {
         opacity: 0,
         duration: 1,
@@ -67,11 +67,16 @@ const CharacterScroller = () => {
     }
   }, [])
 
+
+
   return (
     <div
       ref={containerRef}
       className="w-full min-h-[500vh] bg-[#15161F] pb-[200px] relative"
     >
+      <div className='absolute inset-0'>
+        <BlinkingBackground dotCount={150}/>
+      </div>
       <div className="sticky top-30">
         <div className="flex items-end justify-center w-[70vw] m-auto gap-4">
           <div ref={image1Ref}>
