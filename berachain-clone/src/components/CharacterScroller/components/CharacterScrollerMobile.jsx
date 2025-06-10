@@ -6,6 +6,7 @@ import image2 from '../../../assets/cartoons/image2.jpg';
 import image3 from '../../../assets/cartoons/image3.jpg';
 import image4 from '../../../assets/cartoons/image4.jpg';
 import image5 from '../../../assets/cartoons/image5.jpg';
+import BlinkingBackground from '../../BlinkingBackground';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +85,9 @@ const CharacterScrollerMobile = () => {
 
   return (
     <div ref={containerRef} className="bg-[#15161F] min-h-[600vh] relative">
+      <div className='absolute inset-0'>
+        <BlinkingBackground />
+      </div>
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center text-white">
         {images.map((src, i) => (
           <img
@@ -91,12 +95,12 @@ const CharacterScrollerMobile = () => {
             ref={(el) => (imageRefs.current[i] = el)}
             src={src}
             alt={`character ${i + 1}`}
-            className="absolute w-[20vw] max-w-sm object-contain"
+            className="absolute w-[30vw] max-w-sm object-contain"
 
           />
         ))}
         <div 
-          className="absolute bottom-10 text-center text-xl px-4" 
+          className="absolute bottom-[10vh] text-center text-xl px-4" 
           ref={textRef}
         ></div>
       </div>

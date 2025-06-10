@@ -41,7 +41,7 @@ const BeraEcosystem = () => {
                 backgroundImage: 'linear-gradient(to bottom, #233147, #3A5D88)'
             }}
         >
-            <div ref={planeRef} className='absolute top-[40%] -translate-y-1/2 w-[60vw] sm:w-[50vw] md:w-[40vw] lg:w-auto'>
+            <div ref={planeRef} className='absolute top-[40%] -translate-y-1/2 w-[90vw] sm:w-[50vw] md:w-[40vw] lg:w-auto'>
                 <img src={plane} alt="plane" className='w-full h-auto' />
             </div>
 

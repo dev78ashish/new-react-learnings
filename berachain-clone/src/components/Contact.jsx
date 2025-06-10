@@ -10,7 +10,7 @@ const Contact = () => {
 
       </div>
       {/* Center Main Community Image */}
-      <div className='w-[80%] md:w-[30vw] mx-auto z-10'>
+      <div className='lg:w-[33vw] w-[200px] mx-auto z-10'>
         <img src={SOCIAL_ICONS.community} alt="community" className='w-full h-auto' />
       </div>
 
