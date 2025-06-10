@@ -36,7 +36,7 @@ const Contact = () => {
       </div>
 
       {/* Opensea */}
-      <div className='absolute floating bottom-[50px] md:bottom-[170px] left-[10%] md:left-[47%] md:w-[6vw] w-12'>
+      <div className='absolute floating bottom-[150px] md:bottom-[170px] left-[18%] md:left-[47%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.opensea} alt="opensea" className='w-full h-auto' />
       </div>
 
