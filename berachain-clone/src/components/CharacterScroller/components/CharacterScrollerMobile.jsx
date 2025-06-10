@@ -100,7 +100,7 @@ const CharacterScrollerMobile = () => {
           />
         ))}
         <div 
-          className="absolute bottom-[10vh] text-center text-xl px-4" 
+          className="absolute bottom-[20vh] text-center text-xl px-4" 
           ref={textRef}
         ></div>
       </div>
