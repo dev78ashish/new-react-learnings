@@ -10,18 +10,18 @@ const Contact = () => {
 
       </div>
       {/* Center Main Community Image */}
-      <div className='lg:w-[33vw] w-[200px] mx-auto z-10'>
+      <div className='lg:w-[33vw] w-[250px] mx-auto z-10'>
         <img src={SOCIAL_ICONS.community} alt="community" className='w-full h-auto' />
       </div>
 
       {/* Floating Icons */}
       {/* Twitter */}
-      <div className='absolute floating top-[170px] lg:top-[70px] left-[44%] md:w-[6vw] w-12'>
+      <div className='absolute floating top-[190px] lg:top-[70px] left-[44%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.twitter} alt="twitter" className='w-full h-auto' />
       </div>
 
       {/* Discord */}
-      <div className='absolute floating top-[170px] lg:top-[150px] right-[28%] md:w-[6vw] w-12'>
+      <div className='absolute floating top-[220px] lg:top-[150px] right-[14%] lg:right-[28%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.discord} alt="discord" className='w-full h-auto' />
       </div>
 
@@ -36,17 +36,17 @@ const Contact = () => {
       </div>
 
       {/* Opensea */}
-      <div className='absolute floating bottom-[170px] left-[47%] md:w-[6vw] w-12'>
+      <div className='absolute floating bottom-[100px] md:bottom-[170px] left-[47%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.opensea} alt="opensea" className='w-full h-auto' />
       </div>
 
       {/* Teddy */}
-      <div className='absolute floating top-[52%] right-[28%] md:w-[17vw] w-36'>
+      <div className='absolute floating right-[10%] md:top-[52%] md:right-[28%] md:w-[17vw] w-36'>
         <img src={SOCIAL_ICONS.teddy} alt="teddy" className='w-full h-auto' />
       </div>
 
       {/* Telegram */}
-      <div className='absolute floating top-[50%] right-[35%] md:w-[5vw] w-10'>
+      <div className='absolute floating top-[50%] right-[12%] md:right-[35%] md:w-[5vw] w-10'>
         <img src={SOCIAL_ICONS.telegram} alt="telegram" className='w-full h-auto' />
       </div>
     </div>
