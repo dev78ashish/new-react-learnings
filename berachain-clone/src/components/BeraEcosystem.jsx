@@ -36,12 +36,12 @@ const BeraEcosystem = () => {
     return (
         <div
             ref={sectionRef}
-            className='bg-gradient-to-b w-full h-[500px] md:h-[1000px] relative overflow-hidden'
+            className='bg-gradient-to-b w-full pb-[200px] md:pb-0 h-[500px] md:h-[1000px] relative overflow-hidden'
             style={{
                 backgroundImage: 'linear-gradient(to bottom, #233147, #3A5D88)'
             }}
         >
-            <div ref={planeRef} className='absolute top-[40%] -translate-y-1/2 w-[90vw] sm:w-[50vw] md:w-[40vw] lg:w-auto'>
+            <div ref={planeRef} className='absolute top-[20%] md:top-[40%] md:-translate-y-1/2 w-[90vw] sm:w-[50vw] md:w-[40vw] lg:w-auto'>
                 <img src={plane} alt="plane" className='w-full h-auto floating' />
             </div>
 

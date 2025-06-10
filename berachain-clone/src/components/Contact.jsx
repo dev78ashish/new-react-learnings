@@ -4,7 +4,7 @@ import BlinkingBackground from './BlinkingBackground.jsx'
 
 const Contact = () => {
   return (
-    <div className='w-full bg-[#15161F] pt-[200px] pb-72 relative lg:pt-24'>
+    <div className='w-full bg-[#15161F] pt-[250px] pb-72 relative lg:pt-24'>
       <div className='absolute inset-0'>
         <BlinkingBackground dotCount={50} />
 
@@ -16,12 +16,12 @@ const Contact = () => {
 
       {/* Floating Icons */}
       {/* Twitter */}
-      <div className='absolute floating top-[140px] lg:top-[70px] left-[44%] md:w-[6vw] w-12'>
+      <div className='absolute floating top-[170px] lg:top-[70px] left-[44%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.twitter} alt="twitter" className='w-full h-auto' />
       </div>
 
       {/* Discord */}
-      <div className='absolute floating top-[150px] right-[28%] md:w-[6vw] w-12'>
+      <div className='absolute floating top-[170px] lg:top-[150px] right-[28%] md:w-[6vw] w-12'>
         <img src={SOCIAL_ICONS.discord} alt="discord" className='w-full h-auto' />
       </div>
 
